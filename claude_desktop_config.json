@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "autodiscovery": {
+      "command": "python",
+      "args": ["-m", "autodiscovery"],
+      "cwd": "C:/Users/jeets/OneDrive/Documents/mcp-autodiscovery/src"
+    }
+  }
+}
