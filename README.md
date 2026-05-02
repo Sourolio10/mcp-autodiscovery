@@ -40,10 +40,15 @@ mcp-autodiscovery/
 │       ├── generator.py    # Converts OpenAPI operations → (Tool, config) pairs
 │       ├── registry.py     # Thread-safe in-memory tool store
 │       └── executor.py     # Builds & fires HTTP requests from tool arguments
+├── catalog/
+│   └── apis.yml            # Pre-configured API catalog (10 APIs, no/key auth)
 ├── tests/
 │   ├── test_parser.py
 │   └── test_generator.py
-├── demo.py                 # Standalone end-to-end demo (no Claude needed)
+├── assets/
+│   └── architecture.png    # Architecture diagram
+├── run.py                  # Interactive catalog runner (pick an API, see it live)
+├── demo.py                 # Single-API end-to-end demo
 ├── conftest.py             # Adds src/ to sys.path for pytest
 ├── requirements.txt
 └── pyproject.toml
@@ -77,13 +82,57 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-### Step 4 — Run the demo
+### Step 4 — Run the interactive catalog
+
+```bash
+python run.py
+```
+
+Pick any API from the catalog and watch it get discovered and called live:
+
+```
+mcp-autodiscovery  API Catalog
+
+  No API key required
+  1  Open-Meteo Weather      Real-time weather forecasts worldwide.
+  2  Petstore (Demo)         Classic Swagger demo API.
+  3  JSONPlaceholder         Fake online REST API for testing.
+  4  REST Countries          Country data — capitals, currencies, flags.
+  5  PokéAPI                 The RESTful Pokémon API.
+  6  Open Library (Books)    Search millions of books.
+
+  API key required
+  7  OpenAI API              GPT-4, DALL-E, Whisper, Embeddings.
+  8  GitHub REST API         Repos, issues, PRs, users.
+  9  Stripe Payments         Payments, subscriptions, refunds.
+  10 Anthropic Claude API    Messages, models, token counting.
+
+  Pick a number:
+```
+
+You can also pass the number directly as a CLI argument to skip the menu:
+
+```bash
+# No API key needed — run any of these directly
+python run.py 1   # Open-Meteo Weather
+python run.py 2   # Petstore Demo
+python run.py 3   # JSONPlaceholder
+python run.py 4   # REST Countries
+python run.py 5   # PokéAPI
+python run.py 6   # Open Library (Books)
+
+# API key required — you will be prompted to enter your key
+python run.py 7   # OpenAI
+python run.py 8   # GitHub
+python run.py 9   # Stripe
+python run.py 10  # Anthropic Claude
+```
+
+Or run the single-API weather demo directly (no menu, no key):
 
 ```bash
 python demo.py
 ```
-
-This fetches the Open-Meteo OpenAPI spec, registers a live weather tool, calls it with Atlanta's coordinates, and prints the current temperature and wind speed — end-to-end in your terminal with no Claude required.
 
 Expected output:
 

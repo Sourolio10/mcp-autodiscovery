@@ -1,0 +1,123 @@
+apis:
+
+  # ──────────────────────────────────────────────
+  # NO AUTH REQUIRED
+  # ──────────────────────────────────────────────
+
+  - id: open-meteo
+    name: "Open-Meteo Weather"
+    description: "Real-time weather forecasts and historical data worldwide."
+    spec_url: "https://raw.githubusercontent.com/open-meteo/open-meteo/main/openapi.yml"
+    base_url: "https://api.open-meteo.com"
+    auth_type: none
+    example_tool_pattern: "forecast"
+    example_args:
+      latitude: 33.749
+      longitude: -84.388
+      current: "temperature_2m,wind_speed_10m"
+      forecast_days: 1
+    result_hint: "Check data.current for temperature and wind speed"
+
+  - id: petstore
+    name: "Petstore (Demo)"
+    description: "Classic Swagger demo API. Great for testing tool generation."
+    spec_url: "https://petstore3.swagger.io/api/v3/openapi.json"
+    base_url: "https://petstore3.swagger.io/api/v3"
+    auth_type: none
+    example_tool_pattern: "findbystatus"
+    example_args:
+      status: "available"
+    result_hint: "Returns a list of available pets"
+
+  - id: json-placeholder
+    name: "JSONPlaceholder"
+    description: "Fake online REST API for testing and prototyping."
+    spec_url: "https://raw.githubusercontent.com/APIs-guru/openapi-directory/refs/heads/main/APIs/jsonplaceholder.typicode.com/1.0.0/openapi.yaml"
+    base_url: "https://jsonplaceholder.typicode.com"
+    auth_type: none
+    example_tool_pattern: "getposts"
+    example_args: {}
+    result_hint: "Returns 100 fake blog posts"
+
+  - id: restcountries
+    name: "REST Countries"
+    description: "Country data — capitals, currencies, languages, flags."
+    spec_url: "https://raw.githubusercontent.com/APIs-guru/openapi-directory/refs/heads/main/APIs/restcountries.com/2.0.5/openapi.yaml"
+    base_url: "https://restcountries.com"
+    auth_type: none
+    example_tool_pattern: "getall"
+    example_args: {}
+    result_hint: "Returns all countries with details"
+
+  - id: pokeapi
+    name: "PokéAPI"
+    description: "The RESTful Pokémon API. No auth, all the data."
+    spec_url: "https://raw.githubusercontent.com/APIs-guru/openapi-directory/refs/heads/main/APIs/pokeapi.co/2.7.0/openapi.yaml"
+    base_url: "https://pokeapi.co"
+    auth_type: none
+    example_tool_pattern: "pokemon"
+    example_args:
+      id: "pikachu"
+    result_hint: "Returns Pikachu's full data"
+
+  - id: open-library
+    name: "Open Library (Books)"
+    description: "Internet Archive's Open Library — search millions of books."
+    spec_url: "https://raw.githubusercontent.com/APIs-guru/openapi-directory/refs/heads/main/APIs/openlibrary.org/1.0.0/openapi.yaml"
+    base_url: "https://openlibrary.org"
+    auth_type: none
+    example_tool_pattern: "search"
+    example_args:
+      q: "artificial intelligence"
+      limit: 5
+    result_hint: "Returns books matching the search query"
+
+  # ──────────────────────────────────────────────
+  # API KEY REQUIRED
+  # ──────────────────────────────────────────────
+
+  - id: openai
+    name: "OpenAI API"
+    description: "GPT-4, DALL-E, Whisper, and Embeddings endpoints."
+    spec_url: "https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml"
+    base_url: "https://api.openai.com/v1"
+    auth_type: bearer
+    auth_header: "Authorization"
+    example_tool_pattern: "listmodels"
+    example_args: {}
+    result_hint: "Lists all available OpenAI models"
+
+  - id: github
+    name: "GitHub REST API"
+    description: "Repos, issues, PRs, users — the full GitHub API."
+    spec_url: "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/api.github.com.2022-11-28.json"
+    base_url: "https://api.github.com"
+    auth_type: bearer
+    auth_header: "Authorization"
+    example_tool_pattern: "getauthenticated"
+    example_args: {}
+    result_hint: "Returns your GitHub user profile"
+    note: "Large spec (~50MB) — takes ~30s to load"
+
+  - id: stripe
+    name: "Stripe Payments"
+    description: "Payments, subscriptions, refunds — the full Stripe API."
+    spec_url: "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json"
+    base_url: "https://api.stripe.com"
+    auth_type: bearer
+    auth_header: "Authorization"
+    example_tool_pattern: "getbalance"
+    example_args: {}
+    result_hint: "Returns your current Stripe balance"
+    note: "Large spec (~10MB) — takes ~10s to load"
+
+  - id: anthropic
+    name: "Anthropic Claude API"
+    description: "Messages, models, and token counting endpoints."
+    spec_url: "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/api.md"
+    base_url: "https://api.anthropic.com/v1"
+    auth_type: api_key
+    auth_header: "x-api-key"
+    example_tool_pattern: "listmodels"
+    example_args: {}
+    result_hint: "Lists available Claude models"
